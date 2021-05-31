@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign up form</title>
+        <link rel="stylesheet" href="fontAwesome/css/all.css">
+        <link rel="stylesheet"href="style.css">
+    </head>
+    <body>
+    
+        <div class="container">
+        
+            <div class="header">
+                <h2>Login</h2>
+            </div>
+            
+            <form class="form" id="form">
+                
+                <div class="form-control">
+                    <input type="text" placeholder="Username" id="username">
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Error</p>
+                </div>
+                
+                <div class="form-control">
+                    <input type="email" placeholder="Email" id="email">
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Error</p>
+                </div>
+                
+                <div class="form-control">
+                    <input type="password" placeholder="Password" id="password">
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Error</p>
+                </div>
+                
+                <button>Submit</button>
+                
+            </form>
+            
+        </div>
+        
+        <script>
+        
+            const form = document.getElementById('form');
+            const username = document.getElementById('username');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                checkInputs();
+            })
+            
+            function checkInputs() {
+                const usernameValue = username.value.trim();
+                const emailValue = email.value.trim();
+                const passwordValue = password.value.trim();
+                
+                if(usernameValue === ''){
+                    setErrorFor(username, 'username cannot be blank');
+                } else{
+                    setSuccessFor(username);
+                }
+                
+                if(emailValue === ''){
+                    setErrorFor(email, 'email cannot be blank');
+                }else{
+                    setSuccessFor(email);
+                }
+                
+                if(passwordValue === ''){
+                    setErrorFor(password, 'Password cannot be blank');
+                }else{
+                    setSuccessFor(password);
+                }
+            } 
+            
+            function setErrorFor(Input, message){
+                const formControl = Input.parentElement;
+                const p = formControl.querySelector('p');
+                p.innerHTML = message;
+                
+                formControl.className = 'form-control error';
+            }
+            
+            function setSuccessFor(Input){
+                const formControl = Input.parentElement;
+                formControl.className = 'form-control success';
+            }
+            
+           
+        </script>
+        
+    </body>
+</html>
